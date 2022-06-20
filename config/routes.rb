@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'group_users/create'
+  get 'group_users/destroy'
   get 'groups/index'
   get 'groups/show'
   get 'groups/edit'
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
     resources :book_comments,only: [:create,:destroy]
   end
   get "search" => "searches#search"
-  resources :groups
+  resources :groups do
+    resource :group_users,only:[:create,:destroy]
+  end  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
